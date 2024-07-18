@@ -103,7 +103,7 @@ async def predict(input: PredictionInput):
         df["map"] = map_le.transform(df["map"])
         
         # Predict
-        prediction_score = model(torch.tensor(df.to_numpy()))
+        prediction_score = model(torch.tensor(df.to_numpy(), torch.float32))
         
         # Return the prediction
         return PredictionOutput(ct_prediction=("win" if (1-prediction_score) >= 0.5 else "lose"), 
