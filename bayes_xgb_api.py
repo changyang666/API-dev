@@ -81,7 +81,6 @@ async def predict(input: PredictionInput):
         df["map"] = map_le.transform(df["map"])
         
         # Predict
-        print(df.iloc[0])
         prediction = model.predict_proba(df.iloc[0].to_numpy().reshape(1, -1))
         
         # Return the prediction
@@ -95,4 +94,4 @@ async def predict(input: PredictionInput):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
